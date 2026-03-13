@@ -59,6 +59,7 @@ jobs:
           ANKER_USERNAME: ${{ vars.ANKER_E2E_USER }}
           ANKER_PASSWORD: ${{ secrets.ANKER_E2E_PASS }}
           ANKER_COUNTRY: ${{ vars.ANKER_E2E_COUNTRY }}
+          DEVICE_SN: ${{ secrets.ANKER_E2E_DEVICE_SN }}
           GH_BRANCH: ${{ github.head_ref || github.ref_name }}
 
   build-results:
