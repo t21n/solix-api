@@ -1,3 +1,12 @@
+## [0.2.7](https://github.com/t21n/solix-api/compare/v0.2.6...v0.2.7) (2026-03-13)
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([fe665ca](https://github.com/t21n/solix-api/commit/fe665ca85e8a999889ec9420d5caed0727136360))
+
+
+
 ## [0.2.5](https://github.com/t21n/solix-api/compare/v0.2.4...v0.2.5) (2024-10-17)
 
 
