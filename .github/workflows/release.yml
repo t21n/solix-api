@@ -49,12 +49,6 @@ jobs:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Setup Java
-        uses: actions/setup-java@v5 # Does also set up Maven and GPG
-        with:
-          distribution: 'temurin' # As good as any other, see: https://github.com/actions/setup-java#supported-distributions
-          java-version: '21'
-
       - name: Package Application
         run: |
           npm run clean
