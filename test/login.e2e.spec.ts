@@ -1,6 +1,5 @@
 /// <reference types="jest-extended" />
-import { count } from 'console';
-import { LoginResultResponse, SolixApi } from '../src/api';
+import { SolixApi } from '../src/api';
 
 const config = {
   username: process.env.ANKER_USERNAME as string,
@@ -16,7 +15,7 @@ test('should login', async () => {
   const loginResponse = await api.login();
   expect(loginResponse).not.toBeNull();
 
+  console.log('login response:', loginResponse.code, loginResponse.msg);
   const loginData = loginResponse.data ?? null;
-  console.log(loginData);
   expect(loginData).not.toBeNull();
 });
