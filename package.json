@@ -18,7 +18,7 @@
     "access": "public"
   },
   "dependencies": {
-    "express": "^4.22.0",
+    "express": "^5.0.0",
     "node-fetch": "^2.7.0"
   },
   "devDependencies": {
