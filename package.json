@@ -22,7 +22,7 @@
     "node-fetch": "^2.7.0"
   },
   "devDependencies": {
-    "@octokit/rest": "^21.0.0",
+    "@octokit/rest": "^22.0.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.14",
     "@types/node-fetch": "^2.6.11",
