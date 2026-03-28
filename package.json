@@ -1,8 +1,9 @@
 {
   "name": "@t21n/solix-api",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "Anker Solix API Wrapper",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "clean": "npm i",
     "build": "tsc",

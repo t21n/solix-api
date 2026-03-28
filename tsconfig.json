@@ -3,6 +3,9 @@
     "target": "es2021",
     "module": "commonjs",
     "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "declarationMap": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -10,5 +13,6 @@
     "noImplicitAny": true,
     "skipLibCheck": true,
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src/**/*"]
 }
