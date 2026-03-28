@@ -1,8 +1,9 @@
-jest.mock('node-fetch');
 import fetch, { Response } from 'node-fetch';
 import { LoginResultResponse, ScenInfo, SolixApi } from '../../src/api';
 import offlineFixture from '../fixtures/scene_info_offline.json';
 import onlineNoPvFixture from '../fixtures/scene_info_online_no_pv.json';
+
+jest.mock('node-fetch');
 
 const mockFetch = fetch as jest.MockedFunction<typeof fetch>;
 

@@ -1,5 +1,51 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>t21n/renovate-config"],
-  "prConcurrentLimit": 5
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "matchDatasources": ["npm"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true
+    },
+    {
+      "groupName": "ESLint",
+      "matchManagers": ["npm"],
+      "matchPackagePatterns": [
+        "^eslint",
+        "^@eslint/",
+        "^eslint-config-",
+        "^eslint-plugin-"
+      ],
+      "matchUpdateTypes": ["major", "minor", "patch", "pin"]
+    },
+    {
+      "groupName": "Karma + Jasmine",
+      "matchManagers": ["npm"],
+      "matchPackagePatterns": [
+        "^jasmine",
+        "^@types/jasmine",
+        "^karma",
+        "^karma-"
+      ],
+      "matchUpdateTypes": ["major", "minor", "patch", "pin"]
+    },
+    {
+      "groupName": "TypeScript",
+      "matchManagers": ["npm"],
+      "matchPackagePatterns": [
+        "^typescript$",
+        "^@types/"
+      ],
+      "matchUpdateTypes": ["major", "minor", "patch", "pin"]
+    },
+    {
+      "groupName": "Commitlint",
+      "matchManagers": ["npm"],
+      "matchPackagePatterns": [
+        "^@commitlint/"
+      ],
+      "matchUpdateTypes": ["major", "minor", "patch", "pin"]
+    }
+  ],
+  "prHourlyLimit": 10
 }

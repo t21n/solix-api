@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-import { Logger, consoleLogger } from './logger';
 import { ECDH, createCipheriv, createECDH, createHash } from 'crypto';
+import { Logger, consoleLogger } from './logger';
 
 export interface Options {
   username: string;
@@ -322,7 +322,7 @@ export class SolixApi {
     this.password = options.password;
     this.logger = options.logger ? options.logger : consoleLogger(false);
     this.country = options.country.toUpperCase();
-    this.timezone = this.getTimezoneGMTString();
+    this.timezone = SolixApi.getTimezoneGMTString();
     this.ecdh.generateKeys();
   }
 
@@ -331,18 +331,18 @@ export class SolixApi {
     return createHash('md5').update(Buffer.from(s)).digest('hex');
   }
 
-  private getTimezoneGMTString(): string {
+  private static getTimezoneGMTString(): string {
     const tzo = -new Date().getTimezoneOffset();
     const dif = tzo >= 0 ? '+' : '-';
-    return `GMT${dif}${this.pad(tzo / 60)}:${this.pad(tzo % 60)}`;
+    return `GMT${dif}${SolixApi.pad(tzo / 60)}:${SolixApi.pad(tzo % 60)}`;
   }
 
-  private pad(num: number): string {
+  private static pad(num: number): string {
     const norm = Math.floor(Math.abs(num));
     return `${norm < 10 ? '0' : ''}${norm}`;
   }
 
-  private encryptAPIData(data: string, key: Buffer): string {
+  private static encryptAPIData(data: string, key: Buffer): string {
     const cipher = createCipheriv('aes-256-cbc', key, key.slice(0, 16));
     return cipher.update(data, 'utf8', 'base64') + cipher.final('base64');
   }
@@ -360,13 +360,13 @@ export class SolixApi {
       method: 'POST',
       body: data != null ? JSON.stringify(data) : undefined,
       headers: {
-        ['Content-Type']: 'application/json',
+        'Content-Type': 'application/json',
         'Cache-Control': 'no-cache',
         Country: this.country,
         Timezone: this.timezone,
-        ['Model-Type']: 'DESKTOP',
-        ['App-Name']: 'anker_power',
-        ['Os-Type']: 'android',
+        'Model-Type': 'DESKTOP',
+        'App-Name': 'anker_power',
+        'Os-Type': 'android',
         ...headers,
       },
     });
@@ -374,7 +374,7 @@ export class SolixApi {
 
   public withLogin(login: LoginResultResponse) {
     const headers = {
-      ['X-Auth-Token']: login.auth_token,
+      'X-Auth-Token': login.auth_token,
       gtoken: this.md5(login.user_id),
     };
     const authFetch = async <T>(
@@ -392,9 +392,7 @@ export class SolixApi {
           data,
         );
       },
-      getUserMqttInfo: async () => {
-        return authFetch<UserMqttInfo>('/app/devicemanage/get_user_mqtt_info');
-      },
+      getUserMqttInfo: async () => authFetch<UserMqttInfo>('/app/devicemanage/get_user_mqtt_info'),
       siteHomepage: async () => {
         const data = {};
         return authFetch<SiteHomepageResponse>(
@@ -465,9 +463,9 @@ export class SolixApi {
         endTime?: Date;
         deviceType?: 'solar_production' | 'solarbank';
       }) => {
-        const startTimeString = `${startTime.getUTCFullYear()}-${this.pad(
+        const startTimeString = `${startTime.getUTCFullYear()}-${SolixApi.pad(
           startTime.getUTCMonth(),
-        )}-${this.pad(startTime.getUTCDate())}`;
+        )}-${SolixApi.pad(startTime.getUTCDate())}`;
         const endTimeString =
           endTime != null
             ? `${endTime.getUTCFullYear()}-${endTime.getUTCMonth()}-${endTime.getUTCDate()}`
@@ -554,7 +552,7 @@ export class SolixApi {
       },
       enc: 0,
       email: this.username,
-      password: this.encryptAPIData(
+      password: SolixApi.encryptAPIData(
         this.password,
         this.ecdh.computeSecret(Buffer.from(this.SERVER_PUBLIC_KEY, 'hex')),
       ),
@@ -567,10 +565,10 @@ export class SolixApi {
     const response = await this.fetch('/passport/login', data);
     if (response.status === 200) {
       return (await response.json()) as ResultResponse<LoginResultResponse>;
-    } else {
+    } 
       throw new Error(
         `Login failed (${response.status}): ${await response.text()}`,
       );
-    }
+    
   }
 }

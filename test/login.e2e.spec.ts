@@ -15,6 +15,7 @@ test('should login', async () => {
   const loginResponse = await api.login();
   expect(loginResponse).not.toBeNull();
 
+  // eslint-disable-next-line no-console
   console.log('login response:', loginResponse.code, loginResponse.msg);
   const loginData = loginResponse.data ?? null;
   expect(loginData).not.toBeNull();

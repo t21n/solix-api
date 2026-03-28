@@ -1,7 +1,8 @@
-jest.mock('node-fetch');
 import fetch, { Response } from 'node-fetch';
 import { createHash } from 'crypto';
 import { LoadConfiguration, LoginResultResponse, ParamType, SolixApi } from '../../src/api';
+
+jest.mock('node-fetch');
 
 const mockFetch = fetch as jest.MockedFunction<typeof fetch>;
 
