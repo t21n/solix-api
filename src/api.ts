@@ -181,9 +181,10 @@ export interface Solarbank {
   charging_status: `${number}`;
   status: `${number}`;
   wireless_type: `${number}`;
-  main_version: `${number}`;
+  main_version: string;
   photovoltaic_power: `${number}`;
   output_power: `${number}`;
+  is_display: boolean;
 }
 
 export interface ScenInfo {
@@ -218,11 +219,12 @@ export interface ScenInfo {
     updated_time: string;
     total_photovoltaic_power: `${number}`;
     total_output_power: `${number}`;
-    output_power: `${number}`;
+    output_power?: `${number}`;
     solar_power_1: string;
     solar_power_2: string;
     solar_power_3: string;
     solar_power_4: string;
+    is_display_data: boolean;
   };
   retain_load: string;
   updated_time: string;
