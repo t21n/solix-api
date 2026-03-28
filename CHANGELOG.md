@@ -1,3 +1,19 @@
+## [0.2.11](https://github.com/t21n/solix-api/compare/v0.2.6...v0.2.11) (2026-03-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency express to v5 ([338e63e](https://github.com/t21n/solix-api/commit/338e63e104c64281c097c912e684c501a7b3538a))
+* package.json & package-lock.json to reduce vulnerabilities ([fe665ca](https://github.com/t21n/solix-api/commit/fe665ca85e8a999889ec9420d5caed0727136360))
+
+
+### Features
+
+* Allow json load ([49e03b2](https://github.com/t21n/solix-api/commit/49e03b2d5397b74889c70e1cfcb6c26ba809046a))
+* **API:** Read display data ([3a27a9b](https://github.com/t21n/solix-api/commit/3a27a9b4870c58d76c1d6b4df743814cd7146783))
+
+
+
 ## [0.2.10](https://github.com/t21n/solix-api/compare/v0.2.6...v0.2.10) (2026-03-13)
 
 
