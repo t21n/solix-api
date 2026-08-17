@@ -4,6 +4,10 @@
   "description": "Anker Solix API Wrapper",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t21n/solix-api.git"
+  },
   "scripts": {
     "clean": "npm i",
     "build": "tsc",
