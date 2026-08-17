@@ -1,3 +1,12 @@
+
+## [0.2.12](https://github.com/t21n/solix-api/compare/v0.2.11...v0.2.12) (2026-08-17)
+
+### Dependency Updates
+
+* **deps:** Update actions/setup-node action to v6 ([adc7d29](https://github.com/t21n/solix-api/commit/adc7d299646f2c365e65a451aeaa9832f28bdc18))
+
+
+
 ## [0.2.11](https://github.com/t21n/solix-api/compare/v0.2.6...v0.2.11) (2026-03-28)
 
 
