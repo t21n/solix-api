@@ -1,11 +1,9 @@
-import fetch, { Response } from 'node-fetch';
-import { LoginResultResponse, ScenInfo, SolixApi } from '../../src/api';
+import type { Response } from 'node-fetch';
+import { FetchLike, LoginResultResponse, ScenInfo, SolixApi } from '../../src/api';
 import offlineFixture from '../fixtures/scene_info_offline.json';
 import onlineNoPvFixture from '../fixtures/scene_info_online_no_pv.json';
 
-jest.mock('node-fetch');
-
-const mockFetch = fetch as jest.MockedFunction<typeof fetch>;
+const mockFetch = jest.fn() as jest.MockedFunction<FetchLike>;
 
 function mockResponse(body: unknown): Response {
   return {
@@ -43,6 +41,7 @@ function makeLoggedIn() {
     password: 'secret',
     country: 'DE',
     logger: { log: jest.fn(), warn: jest.fn(), error: jest.fn() },
+    fetch: mockFetch,
   });
   return api.withLogin(FAKE_LOGIN);
 }

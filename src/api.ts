@@ -1,12 +1,32 @@
-import fetch from 'node-fetch';
+import type { RequestInit, Response } from 'node-fetch';
 import { ECDH, createCipheriv, createECDH, createHash } from 'crypto';
 import { Logger, consoleLogger } from './logger';
+
+export type FetchLike = (url: string, init?: RequestInit) => Promise<Response>;
+
+// node-fetch v3 is ESM-only; TypeScript downlevels `import()` to `require()`
+// under "module": "commonjs", which can't load it. Force a genuine dynamic
+// import via the Function constructor so it stays a real ESM import at runtime.
+// eslint-disable-next-line no-new-func, @typescript-eslint/no-implied-eval
+const dynamicImport = new Function(
+  'specifier',
+  'return import(specifier);',
+) as (specifier: string) => Promise<{ default: FetchLike }>;
+
+let nodeFetchPromise: Promise<FetchLike> | null = null;
+
+function defaultFetch(url: string, init?: RequestInit): Promise<Response> {
+  nodeFetchPromise ??= dynamicImport('node-fetch').then((mod) => mod.default);
+  return nodeFetchPromise.then((fetch) => fetch(url, init));
+}
 
 export interface Options {
   username: string;
   password: string;
   country: string;
   logger?: Logger;
+  /** Override the fetch implementation. Defaults to node-fetch; mainly useful for tests. */
+  fetch?: FetchLike;
 }
 
 export interface LoginRequest {
@@ -317,12 +337,15 @@ export class SolixApi {
 
   private readonly logger: Logger;
 
+  private readonly fetchImpl: FetchLike;
+
   constructor(options: Options) {
     this.username = options.username;
     this.password = options.password;
     this.logger = options.logger ? options.logger : consoleLogger(false);
     this.country = options.country.toUpperCase();
     this.timezone = SolixApi.getTimezoneGMTString();
+    this.fetchImpl = options.fetch ?? defaultFetch;
     this.ecdh.generateKeys();
   }
 
@@ -356,7 +379,7 @@ export class SolixApi {
     const urlBuilder = new URL(endpoint, 'https://ankerpower-api-eu.anker.com');
     const url = urlBuilder.href;
 
-    return fetch(url, {
+    return this.fetchImpl(url, {
       method: 'POST',
       body: data != null ? JSON.stringify(data) : undefined,
       headers: {
