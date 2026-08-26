@@ -1,4 +1,31 @@
 
+## [0.2.13](https://github.com/t21n/solix-api/compare/v0.2.12...v0.2.13) (2026-08-26)
+
+### Dependency Updates
+
+* **deps:** Update dependency jest to v30 ([bcacf22](https://github.com/t21n/solix-api/commit/bcacf220ecf0855bd47d33a5f4102eeda2804b32))
+
+* **deps:** Update actions/checkout action to v7 ([01d2455](https://github.com/t21n/solix-api/commit/01d245559de58250734384f00ac6d7b84b57ea22))
+
+* **deps:** Update dependency prettier to v3.9.6 ([f1744e9](https://github.com/t21n/solix-api/commit/f1744e957b03bf2feb916962b3ac7f7abd88ddca))
+
+* **deps:** Update actions/setup-node action to v7 ([18c6cde](https://github.com/t21n/solix-api/commit/18c6cde70db6319f90d3e78be5b806f9f096d75a))
+
+* **deps:** Update actions/create-github-app-token action to v3 ([7b3a3fc](https://github.com/t21n/solix-api/commit/7b3a3fc345b29696c75874aff08e0ace1a9b1246))
+
+* **deps:** Update dependency ts-jest to v29.4.12 ([7fe8c82](https://github.com/t21n/solix-api/commit/7fe8c82606e01f66b0f0cd096bbf352baa757edc))
+
+* **deps:** Update typescript ([47429b6](https://github.com/t21n/solix-api/commit/47429b631c0b32b93c641083d5ac701bc14eee96))
+
+* **deps:** Update eslint ([4ea5b90](https://github.com/t21n/solix-api/commit/4ea5b90de94f0e41fa63aea5c59767db96732f42))
+
+* **deps:** Update eslint ([d12bbad](https://github.com/t21n/solix-api/commit/d12bbad7de7c15de72afa8afd9623a2d89597702))
+
+* **deps:** Update dependency typescript-eslint to v8.67.0 ([1460763](https://github.com/t21n/solix-api/commit/146076350708239605a66d46ec42b0404c9053a4))
+
+
+
+
 ## [0.2.12](https://github.com/t21n/solix-api/compare/v0.2.11...v0.2.12) (2026-08-17)
 
 ### Dependency Updates
