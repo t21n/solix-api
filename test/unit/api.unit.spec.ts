@@ -1,10 +1,8 @@
-import fetch, { Response } from 'node-fetch';
+import type { Response } from 'node-fetch';
 import { createHash } from 'crypto';
-import { LoadConfiguration, LoginResultResponse, ParamType, SolixApi } from '../../src/api';
+import { FetchLike, LoadConfiguration, LoginResultResponse, ParamType, SolixApi } from '../../src/api';
 
-jest.mock('node-fetch');
-
-const mockFetch = fetch as jest.MockedFunction<typeof fetch>;
+const mockFetch = jest.fn() as jest.MockedFunction<FetchLike>;
 
 function mockResponse(status: number, body: unknown): Response {
   return {
@@ -44,6 +42,7 @@ function makeApi(country = 'de') {
     password: 'secret',
     country,
     logger: { log: jest.fn(), warn: jest.fn(), error: jest.fn() },
+    fetch: mockFetch,
   });
 }
 
@@ -69,7 +68,7 @@ describe('SolixApi.login()', () => {
       mockResponse(200, { ...BASE, data: FAKE_LOGIN }),
     );
     await makeApi().login();
-    const url: string = mockFetch.mock.calls[0][0] as string;
+    const url = mockFetch.mock.calls[0][0];
     expect(url).toBe('https://ankerpower-api-eu.anker.com/passport/login');
     expect(mockFetch.mock.calls[0][1]?.method).toBe('POST');
   });
