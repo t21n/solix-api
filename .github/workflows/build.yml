@@ -106,12 +106,3 @@ jobs:
           echo "VERSION=$APP_VERSION" >> $GITHUB_ENV
           echo "APP_VERSION=$APP_VERSION" >> $GITHUB_ENV
           echo "BUILD_DATE=$BUILD_DATE" >> $GITHUB_ENV
-
-      - name: Push To NPM Registry
-        id: push-to-npm-tagged
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        run: |
-          echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
-          npm publish
-        if: github.ref_type == 'tag' || github.tag != ''
