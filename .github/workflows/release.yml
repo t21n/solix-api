@@ -54,6 +54,8 @@ jobs:
           npm run clean
           npm version --no-git-tag-version ${{ github.event.inputs.releaseversion }} || true
           npm run build
+          git add package.json package-lock.json
+          git commit -m "chore(release): bump version to ${{ github.event.inputs.releaseversion }}"
 
       - name: Generate Changelog
         uses: orhun/git-cliff-action@v4
