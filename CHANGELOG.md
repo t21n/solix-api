@@ -1,4 +1,19 @@
 
+## [1.0.0](https://github.com/t21n/solix-api/compare/v0.2.13...v1.0.0) (2026-09-25)
+
+### Bug Fixes
+
+* **deps:** Update dependency node-fetch to v3 ([e13cec9](https://github.com/t21n/solix-api/commit/e13cec941ee52f4f8fa4885e94418a23715a4655))
+
+
+
+### Features
+
+* Migrate to node fetch v3 ([9d33243](https://github.com/t21n/solix-api/commit/9d332438fa754d81f89a5ea19503b739dc58470b))
+
+
+
+
 ## [0.2.13](https://github.com/t21n/solix-api/compare/v0.2.12...v0.2.13) (2026-08-26)
 
 ### Dependency Updates
